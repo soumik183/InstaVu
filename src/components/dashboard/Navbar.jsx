@@ -47,7 +47,7 @@ export default function Navbar({ onMenuClick }) {
 
             {/* Logo & Brand */}
             <div className="flex items-center gap-2 sm:gap-3">
-              <div className="p-1.5 sm:p-2 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-lg sm:rounded-xl shadow-glow-sm">
+              <div className="p-1.5 sm:p-2 bg-gradient-to-br from-gold-500 to-blue-500 rounded-lg sm:rounded-xl shadow-glow-sm">
                 <InstaVuLogo className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-white" />
               </div>
               <span className="hidden sm:block text-xl lg:text-2xl font-extrabold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
@@ -86,8 +86,8 @@ export default function Navbar({ onMenuClick }) {
               onClick={() => setShowUploadModal(true)}
               className="relative group overflow-hidden"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-lg sm:rounded-xl"></div>
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-400 to-secondary-400 rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-gold-500 to-blue-500 rounded-lg sm:rounded-xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-gold-400 to-blue-400 rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="relative px-3 sm:px-4 lg:px-5 py-2 lg:py-2.5 flex items-center gap-1.5 sm:gap-2">
                 <Upload className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                 <span className="hidden sm:inline text-sm lg:text-base font-bold text-white">
@@ -113,7 +113,7 @@ export default function Navbar({ onMenuClick }) {
                 className="flex items-center gap-2 p-1 sm:p-1.5 hover:bg-gray-100 dark:hover:bg-dark-800 rounded-lg lg:rounded-xl transition-colors group"
                 aria-label="Profile menu"
               >
-                <div className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-full flex items-center justify-center shadow-md group-hover:shadow-glow transition-shadow">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 bg-gradient-to-br from-gold-500 to-blue-500 rounded-full flex items-center justify-center shadow-md group-hover:shadow-glow transition-shadow">
                   <span className="text-white font-bold text-sm sm:text-base lg:text-lg">
                     {profile?.username?.[0]?.toUpperCase() || 'U'}
                   </span>

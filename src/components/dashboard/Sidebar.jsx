@@ -96,8 +96,8 @@ export default function Sidebar({ isOpen, onClose, onCategoryChange }) {
   const getProgressGradient = () => {
     if (usagePercent >= 95) return 'from-red-500 to-red-600';
     if (usagePercent >= 80) return 'from-orange-500 to-orange-600';
-    if (usagePercent >= 50) return 'from-yellow-500 to-yellow-600';
-    return 'from-green-500 to-emerald-600';
+    if (usagePercent >= 50) return 'from-gold-500 to-gold-600';
+    return 'from-blue-500 to-blue-600';
   };
 
   const getWarningMessage = () => {
@@ -169,7 +169,7 @@ export default function Sidebar({ isOpen, onClose, onCategoryChange }) {
                 >
                   {/* Background Gradient */}
                   <div className={`
-                    absolute inset-0 bg-gradient-to-br ${category.gradient}
+                    absolute inset-0 bg-gradient-to-br ${isActive ? 'from-gold-500 to-blue-500' : category.gradient}
                     ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-10'}
                     transition-opacity duration-300
                   `}></div>
@@ -193,9 +193,9 @@ export default function Sidebar({ isOpen, onClose, onCategoryChange }) {
                       `}>
                         <Icon className={`
                           w-5 h-5 sm:w-6 sm:h-6
-                          ${isActive 
-                            ? 'text-white' 
-                            : `text-gray-600 dark:text-gray-400 group-hover:bg-gradient-to-br group-hover:${category.gradient} group-hover:bg-clip-text group-hover:text-transparent`
+                          ${isActive
+                            ? 'text-white'
+                            : `text-gray-600 dark:text-gray-400 group-hover:bg-gradient-to-br group-hover:from-gold-500 group-hover:to-blue-500 group-hover:bg-clip-text group-hover:text-transparent`
                           }
                         `} />
                       </div>
@@ -210,9 +210,9 @@ export default function Sidebar({ isOpen, onClose, onCategoryChange }) {
                     {/* Count Badge */}
                     <span className={`
                       px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-bold
-                      ${isActive 
-                        ? 'bg-white/30 text-white shadow-inner' 
-                        : 'bg-gray-100 dark:bg-dark-800 text-gray-600 dark:text-gray-400 group-hover:bg-gray-200 dark:group-hover:bg-dark-700'
+                      ${isActive
+                        ? 'bg-white/30 text-white shadow-inner'
+                        : 'bg-gray-100 dark:bg-dark-800 text-gray-600 dark:text-gray-400 group-hover:bg-gradient-to-r group-hover:from-gold-100 group-hover:to-blue-100 dark:group-hover:from-gold-900/20 dark:group-hover:to-blue-900/20'
                       }
                       transition-all
                     `}>
@@ -240,7 +240,7 @@ export default function Sidebar({ isOpen, onClose, onCategoryChange }) {
               `}
             >
               <div className={`
-                absolute inset-0 bg-gradient-to-br from-pink-500 to-red-500
+                absolute inset-0 bg-gradient-to-br from-gold-500 to-blue-500
                 ${location.pathname === '/dashboard/favorites' ? 'opacity-100' : 'opacity-0 group-hover:opacity-10'}
                 transition-opacity duration-300
               `}></div>
@@ -264,7 +264,7 @@ export default function Sidebar({ isOpen, onClose, onCategoryChange }) {
                       w-5 h-5 sm:w-6 sm:h-6
                       ${location.pathname === '/dashboard/favorites'
                         ? 'text-white'
-                        : 'text-red-500 group-hover:text-red-600'
+                        : 'text-gold-500 group-hover:text-gold-600'
                       }
                     `} />
                   </div>
@@ -277,7 +277,7 @@ export default function Sidebar({ isOpen, onClose, onCategoryChange }) {
                   px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-bold
                   ${location.pathname === '/dashboard/favorites'
                     ? 'bg-white/30 text-white shadow-inner'
-                    : 'bg-gray-100 dark:bg-dark-800 text-gray-600 dark:text-gray-400'
+                    : 'bg-gray-100 dark:bg-dark-800 text-gray-600 dark:text-gray-400 group-hover:bg-gradient-to-r group-hover:from-gold-100 group-hover:to-blue-100 dark:group-hover:from-gold-900/20 dark:group-hover:to-blue-900/20'
                   }
                 `}>
                   {allFiles.filter(f => f.is_favorite).length}
