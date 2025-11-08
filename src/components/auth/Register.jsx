@@ -95,11 +95,11 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-600 via-primary-700 to-secondary-600 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-700 to-gold-600 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 animate-scale-in">
         {/* Logo */}
         <div className="text-center mb-8">
-          <InstaVuLogo className="w-16 h-16 mx-auto mb-4 text-primary-600" />
+          <InstaVuLogo className="w-16 h-16 mx-auto mb-4 text-blue-600" />
           <h1 className="text-3xl font-bold gradient-text">Create Account</h1>
           <p className="text-gray-600 mt-2">Join InstaVu for unlimited storage</p>
         </div>
@@ -125,7 +125,7 @@ export default function Register() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition"
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                 placeholder="your@email.com"
                 required
                 disabled={loading}
@@ -145,7 +145,7 @@ export default function Register() {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition"
+                className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                 placeholder="••••••••"
                 required
                 disabled={loading}
@@ -194,7 +194,7 @@ export default function Register() {
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition"
+                className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                 placeholder="••••••••"
                 required
                 disabled={loading}
@@ -213,7 +213,7 @@ export default function Register() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-gradient-to-r from-primary-600 to-primary-700 text-white py-3 rounded-lg font-semibold hover:from-primary-700 hover:to-primary-800 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            className="w-full bg-gradient-to-r from-blue-600 to-gold-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-gold-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
             {loading && <LoadingSpinner className="w-5 h-5" />}
             {loading ? 'Creating account...' : 'Create Account'}
@@ -223,7 +223,7 @@ export default function Register() {
         {/* Login Link */}
         <p className="text-center text-sm text-gray-600 mt-6">
           Already have an account?{' '}
-          <Link to="/login" className="text-primary-600 font-semibold hover:underline">
+          <Link to="/login" className="text-blue-600 font-semibold hover:underline">
             Sign in
           </Link>
         </p>
