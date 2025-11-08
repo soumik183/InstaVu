@@ -137,15 +137,16 @@ RETURNS TABLE (
   total_size BIGINT,
   bucket_id TEXT
 ) AS $$
+DECLARE
+  v_bucket_id TEXT := 'instavault-storage';
 BEGIN
   RETURN QUERY
-  SELECT 
+  SELECT
     COUNT(*)::BIGINT as total_files,
     COALESCE(SUM((metadata->>'size')::BIGINT), 0) as total_size,
-    objects.bucket_id
+    v_bucket_id
   FROM storage.objects
-  WHERE bucket_id = 'instavault-storage'
-  GROUP BY objects.bucket_id;
+  WHERE bucket_id = v_bucket_id;
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 
