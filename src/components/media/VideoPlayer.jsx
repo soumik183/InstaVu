@@ -328,7 +328,7 @@ export default function VideoPlayer({ video, onClose }) {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 bg-black z-50 flex flex-col"
+      className="fixed inset-0 bg-gradient-to-br from-black via-blue-900 to-gold-900 z-50 flex flex-col"
       style={{ width: '100vw', height: '100vh' }}
       onMouseMove={handleMouseMove}
     >
@@ -376,7 +376,7 @@ export default function VideoPlayer({ video, onClose }) {
         {/* Buffering Spinner */}
         {playerState.buffering && (
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 sm:h-16 sm:w-16 border-4 border-white border-t-transparent"></div>
+            <div className="animate-spin rounded-full h-12 w-12 sm:h-16 sm:w-16 border-4 border-blue-400 border-t-transparent"></div>
           </div>
         )}
       </div>
@@ -393,7 +393,7 @@ export default function VideoPlayer({ video, onClose }) {
           onClick={handleSeek}
         >
           <div
-            className="h-full bg-primary-500 rounded-full relative group-hover:h-2 transition-all"
+            className="h-full bg-blue-500 rounded-full relative group-hover:h-2 transition-all"
             style={{ width: `${progressPercent}%` }}
           >
             <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 bg-white rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition"></div>

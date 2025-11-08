@@ -187,7 +187,7 @@ export default function PhotoViewer({ photo, photos, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-95 z-50 flex flex-col" style={{ width: '100vw', height: '100vh' }}>
+    <div className="fixed inset-0 bg-gradient-to-br from-black via-blue-900 to-gold-900 z-50 flex flex-col" style={{ width: '100vw', height: '100vh' }}>
       {/* Top Bar - Responsive */}
       <div className="absolute top-0 left-0 right-0 bg-gradient-to-b from-black/80 to-transparent p-3 sm:p-4 md:p-6 z-10">
         <div className="flex items-center justify-between text-white">
@@ -228,7 +228,7 @@ export default function PhotoViewer({ photo, photos, onClose }) {
         {/* Loading State */}
         {!imageLoaded && (
           <div className="absolute inset-0 flex items-center justify-center">
-            <LoadingSpinner className="w-12 h-12 sm:w-16 sm:h-16 text-primary-500" />
+            <LoadingSpinner className="w-12 h-12 sm:w-16 sm:h-16 text-blue-500" />
           </div>
         )}
 
