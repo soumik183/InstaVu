@@ -72,11 +72,11 @@ export default function ApiDashboard({ onClose }) {
       <div className="w-full max-w-5xl max-h-[95vh] sm:max-h-[90vh] overflow-hidden flex flex-col bg-white dark:bg-dark-900 rounded-2xl sm:rounded-3xl shadow-2xl animate-scale-in">
         
         {/* Header - Premium Gradient */}
-        <div className="relative bg-gradient-to-br from-primary-600 via-primary-700 to-secondary-600 px-4 sm:px-6 md:px-8 py-4 sm:py-6 overflow-hidden">
+        <div className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-gold-600 px-4 sm:px-6 md:px-8 py-4 sm:py-6 overflow-hidden">
           {/* Animated Background Shapes */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute -top-20 -right-20 w-40 h-40 bg-white rounded-full blur-3xl animate-float"></div>
-            <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-secondary-300 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
+            <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-gold-300 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
           </div>
 
           {/* Header Content */}
@@ -150,10 +150,10 @@ export default function ApiDashboard({ onClose }) {
               <div className="absolute inset-0 bg-gradient-to-r from-primary-50 to-secondary-50 dark:from-primary-900/20 dark:to-secondary-900/20 rounded-xl sm:rounded-2xl border-2 border-dashed border-primary-300 dark:border-primary-700 group-hover:border-primary-500 dark:group-hover:border-primary-500 transition-colors"></div>
               <div className="absolute inset-0 bg-gradient-to-r from-primary-500/0 to-secondary-500/0 group-hover:from-primary-500/10 group-hover:to-secondary-500/10 rounded-xl sm:rounded-2xl transition-all"></div>
               <div className="relative px-4 sm:px-6 py-4 sm:py-6 flex items-center justify-center gap-2 sm:gap-3">
-                <div className="p-2 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-lg sm:rounded-xl shadow-glow-sm group-hover:shadow-glow transition-shadow">
+                <div className="p-2 bg-gradient-to-br from-gold-500 to-blue-500 rounded-lg sm:rounded-xl shadow-glow-sm group-hover:shadow-glow transition-shadow">
                   <Plus className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
-                <span className="text-base sm:text-lg font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
+                <span className="text-base sm:text-lg font-bold bg-gradient-to-r from-gold-600 to-blue-600 bg-clip-text text-transparent">
                   Add New Supabase API
                 </span>
               </div>
@@ -183,8 +183,8 @@ export default function ApiDashboard({ onClose }) {
           {/* Empty State */}
           {!loading && apiKeys.length === 0 && !showAddForm && (
             <div className="text-center py-12 sm:py-16 animate-fade-in">
-              <div className="inline-block p-4 sm:p-6 bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-primary-900/20 dark:to-secondary-900/20 rounded-2xl sm:rounded-3xl mb-4 sm:mb-6">
-                <Key className="w-16 h-16 sm:w-20 sm:h-20 text-primary-600 dark:text-primary-400 animate-float" />
+              <div className="inline-block p-4 sm:p-6 bg-gradient-to-br from-gold-100 to-blue-100 dark:from-gold-900/20 dark:to-blue-900/20 rounded-2xl sm:rounded-3xl mb-4 sm:mb-6">
+                <Key className="w-16 h-16 sm:w-20 sm:h-20 text-blue-600 dark:text-blue-400 animate-float" />
               </div>
               <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3">
                 No API Keys Yet
@@ -198,11 +198,11 @@ export default function ApiDashboard({ onClose }) {
                   <span>5GB per API</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 bg-primary-500 rounded-full animate-pulse"></div>
+                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
                   <span>Unlimited APIs</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 bg-secondary-500 rounded-full animate-pulse"></div>
+                  <div className="w-2 h-2 bg-gold-500 rounded-full animate-pulse"></div>
                   <span>Auto-switching</span>
                 </div>
               </div>
