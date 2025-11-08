@@ -101,7 +101,14 @@ body {
 
 /* Premium Card */
 .premium-card {
-  @apply bg-white dark:bg-dark-800 rounded-2xl shadow-card hover:shadow-card-hover transition-shadow duration-300 border border-gray-200 dark:border-dark-700;
+  background: white;
+  border-radius: 1rem;
+  transition: box-shadow 0.3s;
+  border: 1px solid #e5e7eb;
+}
+
+.premium-card:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 /* Premium Button */
@@ -138,7 +145,18 @@ body {
 
 /* Loading Skeleton */
 .skeleton {
-  @apply bg-gray-200 dark:bg-dark-700 animate-pulse rounded-lg;
+  background: #e5e7eb;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  border-radius: 0.5rem;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
 }
 
 /* Touch Feedback - Mobile */
