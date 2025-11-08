@@ -7,20 +7,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Premium White Variants
-        white: {
-          50: '#ffffff',
-          100: '#fefefe',
-          200: '#fdfdfd',
-          300: '#fcfcfc',
-          400: '#fafafa',
-          500: '#f9f9f9',
-          600: '#f7f7f7',
-          700: '#f5f5f5',
-          800: '#f3f3f3',
-          900: '#f1f1f1',
-          950: '#efefef',
-        },
+        // Standard White (keeping original for compatibility)
+        white: '#ffffff',
         // Premium Black Variants
         black: {
           50: '#f8f9fa',
