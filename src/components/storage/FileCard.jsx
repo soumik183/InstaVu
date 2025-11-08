@@ -58,7 +58,7 @@ export default function FileCard({ file, viewMode, onClick }) {
     return (
       <div
         onClick={onClick}
-        className="group bg-white dark:bg-dark-800 rounded-xl sm:rounded-2xl border border-gray-200 dark:border-dark-700 hover:border-primary-300 dark:hover:border-primary-700 hover:shadow-lg transition-all duration-300 cursor-pointer overflow-hidden"
+        className="group bg-white dark:bg-dark-800 rounded-xl sm:rounded-2xl border border-gray-200 dark:border-dark-700 hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-lg transition-all duration-300 cursor-pointer overflow-hidden"
       >
         <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4">
           {/* Thumbnail - Responsive */}
@@ -121,7 +121,7 @@ export default function FileCard({ file, viewMode, onClick }) {
               aria-label="Download"
             >
               {loading ? (
-                <LoadingSpinner className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600" />
+                <LoadingSpinner className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
               ) : (
                 <Download className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600 dark:text-gray-400" />
               )}
@@ -144,7 +144,7 @@ export default function FileCard({ file, viewMode, onClick }) {
   return (
     <div
       onClick={onClick}
-      className="group bg-white dark:bg-dark-800 rounded-xl sm:rounded-2xl border border-gray-200 dark:border-dark-700 overflow-hidden hover:border-primary-300 dark:hover:border-primary-700 hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+      className="group bg-white dark:bg-dark-800 rounded-xl sm:rounded-2xl border border-gray-200 dark:border-dark-700 overflow-hidden hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer"
     >
       {/* Thumbnail - Aspect Ratio */}
       <div className="relative aspect-square bg-gradient-to-br from-gray-100 to-gray-200 dark:from-dark-700 dark:to-dark-600">
@@ -152,7 +152,7 @@ export default function FileCard({ file, viewMode, onClick }) {
           <>
             {!imageLoaded && (
               <div className="absolute inset-0 flex items-center justify-center">
-                <LoadingSpinner className="w-8 h-8 text-primary-600" />
+                <LoadingSpinner className="w-8 h-8 text-blue-600" />
               </div>
             )}
             <img
@@ -174,7 +174,7 @@ export default function FileCard({ file, viewMode, onClick }) {
             {/* Play Overlay */}
             <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors">
               <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/90 group-hover:bg-white rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-all">
-                <Play className="w-6 h-6 sm:w-8 sm:h-8 text-primary-600 ml-1" />
+                <Play className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600 ml-1" />
               </div>
             </div>
             {/* Duration Badge */}
