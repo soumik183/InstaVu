@@ -97,7 +97,7 @@ export default function SetUsername() {
         {/* Logo */}
         <div className="text-center mb-6">
           <div className="mb-4">
-            <div className="inline-block p-3 bg-primary-500 rounded-xl animate-bounce">
+            <div className="inline-block p-3 bg-premium-gradient rounded-xl animate-bounce shadow-glow-blue">
               <Icon name={ICONS.ALL_FILES} className="w-8 h-8 text-white" />
             </div>
           </div>
