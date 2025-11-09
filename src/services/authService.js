@@ -31,9 +31,8 @@ export const authService = {
   async signOut() {
     try {
       const { error } = await supabase.auth.signOut();
-      // Clear localStorage
+      // Clear localStorage email only (never password)
       localStorage.removeItem('remembered_email');
-      localStorage.removeItem('remembered_password');
       return { error };
     } catch (error) {
       return { error };

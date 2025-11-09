@@ -336,9 +336,9 @@ class MultiApiManager {
     const apis = Array.from(this.apiClients.values());
     
     return {
-      total_used: apis.reduce((sum, api) => sum + api.storage_used, 0),
-      total_limit: apis.reduce((sum, api) => sum + api.storage_limit, 0),
-      total_files: apis.reduce((sum, api) => sum + api.files_count, 0),
+      total_used: apis.reduce((sum, api) => sum + (api.storage_used || 0), 0),
+      total_limit: apis.reduce((sum, api) => sum + (api.storage_limit || 0), 0),
+      total_files: apis.reduce((sum, api) => sum + (api.files_count || 0), 0),
       apis_count: apis.length,
       active_apis: apis.filter(api => api.status === 'active').length,
     };
