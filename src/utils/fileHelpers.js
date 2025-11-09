@@ -43,8 +43,30 @@ export const isVideo = (mimeType) => {
 };
 
 // Validate file
-export const validateFile = (file) => {
+export const validateFile = (file, options = {}) => {
   const errors = [];
+  const {
+    maxSize = 50 * 1024 * 1024, // 50MB default
+    minSize = 1024, // 1KB minimum
+    allowedTypes = [
+      'image/jpeg',
+      'image/png',
+      'image/gif',
+      'image/webp',
+      'video/mp4',
+      'video/webm',
+      'video/mov',
+      'application/pdf',
+      'text/plain',
+      'text/csv',
+      'application/vnd.ms-excel',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      'application/msword',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'application/vnd.ms-powerpoint',
+      'application/vnd.openxmlformats-officedocument.presentationml.presentation'
+    ]
+  } = options;
 
   if (!file) {
     errors.push('No file selected');
@@ -53,6 +75,25 @@ export const validateFile = (file) => {
 
   if (file.size === 0) {
     errors.push('File is empty');
+  }
+
+  if (file.size < minSize) {
+    errors.push(`File is too small. Minimum size is ${formatFileSize(minSize)}`);
+  }
+
+  if (file.size > maxSize) {
+    errors.push(`File is too large. Maximum size is ${formatFileSize(maxSize)}`);
+  }
+
+  if (file.type && allowedTypes.length > 0 && !allowedTypes.includes(file.type)) {
+    errors.push(`File type "${file.type}" is not allowed`);
+  }
+
+  // Check for dangerous file extensions
+  const dangerousExtensions = ['.exe', '.bat', '.cmd', '.com', '.pif', '.scr', '.vbs', '.js', '.jar'];
+  const fileExtension = getFileExtension(file.name).toLowerCase();
+  if (dangerousExtensions.some(ext => fileExtension === ext || file.name.toLowerCase().includes(ext))) {
+    errors.push('File type not allowed for security reasons');
   }
 
   return {
