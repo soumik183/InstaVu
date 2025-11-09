@@ -7,6 +7,10 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Essential Colors (Black, White)
+        black: '#000000',
+        white: '#ffffff',
+        
         // Premium Color Scheme: Black, White, Blue, Gold
         primary: {
           50: '#f0f9ff',
