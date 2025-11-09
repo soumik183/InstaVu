@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { CheckCircle, ErrorCircle, WarningCircle, Close } from '../../assets/icons';
+import Icon, { ICONS } from '../../components/common/Icon';
 
 export default function Toast({ message, type = 'success', duration = 3000, onClose }) {
   const [isVisible, setIsVisible] = useState(true);
@@ -14,21 +14,21 @@ export default function Toast({ message, type = 'success', duration = 3000, onCl
   }, [duration, onClose]);
 
   const icons = {
-    success: <CheckCircle className="w-6 h-6 text-green-500" />,
-    error: <ErrorCircle className="w-6 h-6 text-red-500" />,
-    warning: <WarningCircle className="w-6 h-6 text-orange-500" />,
+    success: <Icon name={ICONS.CHECK} className="w-6 h-6 text-success-500" />,
+    error: <Icon name={ICONS.ERROR} className="w-6 h-6 text-error-500" />,
+    warning: <Icon name={ICONS.WARNING} className="w-6 h-6 text-warning-500" />,
   };
 
   const bgColors = {
-    success: 'bg-green-50 border-green-200',
-    error: 'bg-red-50 border-red-200',
-    warning: 'bg-orange-50 border-orange-200',
+    success: 'bg-success-50 border-success-200',
+    error: 'bg-error-50 border-error-200',
+    warning: 'bg-warning-50 border-warning-200',
   };
 
   const textColors = {
-    success: 'text-green-800',
-    error: 'text-red-800',
-    warning: 'text-orange-800',
+    success: 'text-success-800',
+    error: 'text-error-800',
+    warning: 'text-warning-800',
   };
 
   return (
@@ -41,7 +41,7 @@ export default function Toast({ message, type = 'success', duration = 3000, onCl
         className={`flex items-center gap-3 px-4 py-3 rounded-lg border shadow-lg ${bgColors[type]} ${textColors[type]} min-w-[300px] max-w-md`}
       >
         {icons[type]}
-        <p className="flex-1 font-medium">{message}</p>
+        <p className="flex-1 font-medium text-sm">{message}</p>
         <button
           onClick={() => {
             setIsVisible(false);
@@ -49,7 +49,7 @@ export default function Toast({ message, type = 'success', duration = 3000, onCl
           }}
           className="hover:opacity-70 transition"
         >
-          <Close className="w-5 h-5" />
+          <Icon name={ICONS.CLOSE} className="w-5 h-5" />
         </button>
       </div>
     </div>
