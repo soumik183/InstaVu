@@ -3,7 +3,7 @@ import { useStorage } from '../../context/StorageContext';
 import FileCard from './FileCard';
 import PhotoViewer from '../media/PhotoViewer';
 import VideoPlayer from '../media/VideoPlayer';
-import { Grid, List, LoadingSpinner, Upload } from '../../assets/icons';
+import Icon, { ICONS } from '../common/Icon';
 
 export default function FileGrid({ filter }) {
   const { files, loading } = useStorage();
@@ -45,12 +45,12 @@ export default function FileGrid({ filter }) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] animate-fade-in">
         <div className="relative">
-          <div className="w-16 h-16 sm:w-20 sm:h-20 border-4 border-primary-200 dark:border-primary-900 border-t-primary-600 rounded-full animate-spin"></div>
+          <div className="w-16 h-16 sm:w-20 sm:h-20 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin"></div>
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-full animate-pulse"></div>
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary-500 to-gold-500 rounded-full animate-pulse"></div>
           </div>
         </div>
-        <p className="mt-6 text-sm sm:text-base text-gray-600 dark:text-gray-400 font-medium">
+        <p className="mt-6 text-sm sm:text-base text-gray-600 font-medium">
           Loading your files...
         </p>
       </div>
@@ -62,16 +62,16 @@ export default function FileGrid({ filter }) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] p-4 sm:p-6 animate-scale-in">
         <div className="relative mb-6 sm:mb-8">
-          <div className="w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-primary-900/20 dark:to-secondary-900/20 rounded-3xl sm:rounded-4xl flex items-center justify-center">
-            <Upload className="w-12 h-12 sm:w-16 sm:h-16 text-primary-600 dark:text-primary-400 animate-float" />
+          <div className="w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-gray-100 to-primary-100 rounded-3xl sm:rounded-4xl flex items-center justify-center">
+            <Icon name={ICONS.UPLOAD} className="w-12 h-12 sm:w-16 sm:h-16 text-primary-600 animate-float" />
           </div>
-          <div className="absolute -bottom-2 -right-2 w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-secondary-500 to-primary-500 rounded-full shadow-glow-sm"></div>
+          <div className="absolute -bottom-2 -right-2 w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-gold-500 to-primary-500 rounded-full shadow-gold-glow"></div>
         </div>
         
-        <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3">
+        <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">
           No files yet
         </h3>
-        <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 text-center max-w-sm mb-6 sm:mb-8">
+        <p className="text-sm sm:text-base text-gray-600 text-center max-w-sm mb-6 sm:mb-8">
           Upload your first file to get started with InstaVu
         </p>
 
@@ -79,10 +79,10 @@ export default function FileGrid({ filter }) {
           onClick={() => {/* Open upload modal */}}
           className="group relative overflow-hidden"
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-xl sm:rounded-2xl"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-primary-400 to-secondary-400 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div className="absolute inset-0 bg-gold-gradient rounded-xl sm:rounded-2xl"></div>
+          <div className="absolute inset-0 bg-gold-400 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
           <div className="relative px-6 sm:px-8 py-3 sm:py-4 flex items-center gap-2 sm:gap-3">
-            <Upload className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+            <Icon name={ICONS.UPLOAD} className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
             <span className="text-base sm:text-lg font-bold text-white">Upload Files</span>
           </div>
         </button>
@@ -96,18 +96,18 @@ export default function FileGrid({ filter }) {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
         {/* Title */}
         <div>
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">
             {filter === 'favorites' ? 'Favorite Files' : 
              filter ? `${filter.charAt(0).toUpperCase() + filter.slice(1)}s` : 
              'All Files'}
           </h2>
-          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mt-1">
+          <p className="text-sm sm:text-base text-gray-600 mt-1">
             {filteredFiles.length} {filteredFiles.length === 1 ? 'file' : 'files'}
           </p>
         </div>
 
         {/* View Mode Toggle - Premium */}
-        <div className="flex items-center gap-2 bg-gray-100 dark:bg-dark-800 rounded-xl sm:rounded-2xl p-1.5 shadow-inner">
+        <div className="flex items-center gap-2 bg-gray-100 rounded-xl sm:rounded-2xl p-1.5 shadow-inner">
           <button
             onClick={() => handleViewModeChange('grid')}
             className={`
@@ -115,12 +115,12 @@ export default function FileGrid({ filter }) {
               font-semibold text-sm sm:text-base
               transition-all duration-300
               ${viewMode === 'grid'
-                ? 'bg-white dark:bg-dark-700 text-primary-600 dark:text-primary-400 shadow-md scale-105'
-                : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+                ? 'bg-white text-primary-600 shadow-md scale-105'
+                : 'text-gray-600 hover:text-gray-900'
               }
             `}
           >
-            <Grid className="w-4 h-4 sm:w-5 sm:h-5" />
+            <Icon name={ICONS.GRID} className="w-4 h-4 sm:w-5 sm:h-5" />
             <span className="hidden sm:inline">Grid</span>
           </button>
           <button
@@ -130,12 +130,12 @@ export default function FileGrid({ filter }) {
               font-semibold text-sm sm:text-base
               transition-all duration-300
               ${viewMode === 'list'
-                ? 'bg-white dark:bg-dark-700 text-primary-600 dark:text-primary-400 shadow-md scale-105'
-                : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+                ? 'bg-white text-primary-600 shadow-md scale-105'
+                : 'text-gray-600 hover:text-gray-900'
               }
             `}
           >
-            <List className="w-4 h-4 sm:w-5 sm:h-5" />
+            <Icon name={ICONS.LIST} className="w-4 h-4 sm:w-5 sm:h-5" />
             <span className="hidden sm:inline">List</span>
           </button>
         </div>
