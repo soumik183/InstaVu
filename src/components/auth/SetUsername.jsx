@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { InstaVuLogo, User, CheckCircle, ErrorCircle, LoadingSpinner } from '../../assets/icons';
+import Icon, { ICONS } from '../../components/common/Icon';
 import { validateUsername } from '../../utils/validators';
 
 export default function SetUsername() {
@@ -92,21 +92,26 @@ export default function SetUsername() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-600 via-primary-700 to-secondary-600 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 animate-scale-in">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+      <div className="bg-white rounded-2xl shadow-lg border border-gray-200 w-full max-w-md p-6 sm:p-8 animate-scale-in">
         {/* Logo */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-6">
           <div className="mb-4">
-            <InstaVuLogo className="w-20 h-20 mx-auto text-primary-600 animate-bounce" />
+            <div className="inline-block p-3 bg-primary-500 rounded-xl animate-bounce">
+              <Icon name={ICONS.ALL_FILES} className="w-8 h-8 text-white" />
+            </div>
           </div>
-          <h1 className="text-3xl font-bold gradient-text mb-2">Welcome to InstaVu! 🎉</h1>
-          <p className="text-gray-600">Choose your unique username</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome to InstaVu! 🎉</h1>
+          <p className="text-gray-600 text-sm">Choose your unique username</p>
         </div>
 
         {/* Error Message */}
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-4 text-sm">
-            {error}
+          <div className="bg-error-50 border border-error-200 text-error-700 px-4 py-3 rounded-lg mb-4 text-sm">
+            <div className="flex items-start gap-2">
+              <Icon name={ICONS.ERROR} className="w-5 h-5 flex-shrink-0 mt-0.5" />
+              <span>{error}</span>
+            </div>
           </div>
         )}
 
@@ -118,14 +123,14 @@ export default function SetUsername() {
               Username
             </label>
             <div className="relative">
-              <User className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <Icon name={ICONS.USER} className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
               <input
                 type="text"
                 value={username}
                 onChange={handleChange}
-                className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition ${
-                  available === true ? 'border-green-500' :
-                  available === false || validationErrors.length > 0 ? 'border-red-500' :
+                className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition text-sm ${
+                  available === true ? 'border-success-500' :
+                  available === false || validationErrors.length > 0 ? 'border-error-500' :
                   'border-gray-300'
                 }`}
                 placeholder="johndoe"
@@ -135,12 +140,12 @@ export default function SetUsername() {
                 maxLength={20}
               />
               <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                {checking && <LoadingSpinner className="w-5 h-5 text-primary-600" />}
+                {checking && <Icon name={ICONS.LOADING} spin className="w-5 h-5 text-primary-600" />}
                 {!checking && available === true && (
-                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  <Icon name={ICONS.CHECK} className="w-5 h-5 text-success-500" />
                 )}
                 {!checking && (available === false || validationErrors.length > 0) && (
-                  <ErrorCircle className="w-5 h-5 text-red-500" />
+                  <Icon name={ICONS.ERROR} className="w-5 h-5 text-error-500" />
                 )}
               </div>
             </div>
@@ -149,22 +154,22 @@ export default function SetUsername() {
             <div className="mt-2 space-y-1">
               {validationErrors.length > 0 ? (
                 validationErrors.map((err, idx) => (
-                  <p key={idx} className="text-xs text-red-600 flex items-center gap-1">
-                    <ErrorCircle className="w-3 h-3" />
+                  <p key={idx} className="text-xs text-error-600 flex items-center gap-1">
+                    <Icon name={ICONS.ERROR} className="w-3 h-3" />
                     {err}
                   </p>
                 ))
               ) : (
                 <>
                   {available === true && (
-                    <p className="text-xs text-green-600 flex items-center gap-1">
-                      <CheckCircle className="w-3 h-3" />
+                    <p className="text-xs text-success-600 flex items-center gap-1">
+                      <Icon name={ICONS.CHECK} className="w-3 h-3" />
                       Username is available!
                     </p>
                   )}
                   {available === false && (
-                    <p className="text-xs text-red-600 flex items-center gap-1">
-                      <ErrorCircle className="w-3 h-3" />
+                    <p className="text-xs text-error-600 flex items-center gap-1">
+                      <Icon name={ICONS.ERROR} className="w-3 h-3" />
                       Username is already taken
                     </p>
                   )}
@@ -177,15 +182,15 @@ export default function SetUsername() {
               <p className="text-xs font-medium text-gray-700 mb-2">Username requirements:</p>
               <ul className="text-xs text-gray-600 space-y-1">
                 <li className="flex items-center gap-2">
-                  <span className={username.length >= 3 ? 'text-green-600' : ''}>✓</span>
+                  <span className={username.length >= 3 ? 'text-success-600' : 'text-gray-400'}>✓</span>
                   3-20 characters
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className={/^[a-z0-9_-]*$/.test(username) ? 'text-green-600' : ''}>✓</span>
+                  <span className={/^[a-z0-9_-]*$/.test(username) ? 'text-success-600' : 'text-gray-400'}>✓</span>
                   Lowercase letters, numbers, underscore, hyphen only
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className={!/^[0-9]/.test(username) || !username ? 'text-green-600' : ''}>✓</span>
+                  <span className={!/^[0-9]/.test(username) || !username ? 'text-success-600' : 'text-gray-400'}>✓</span>
                   Cannot start with a number
                 </li>
               </ul>
@@ -196,9 +201,9 @@ export default function SetUsername() {
           <button
             type="submit"
             disabled={loading || !available || validationErrors.length > 0}
-            className="w-full bg-gradient-to-r from-primary-600 to-primary-700 text-white py-3 rounded-lg font-semibold hover:from-primary-700 hover:to-primary-800 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            className="w-full bg-primary-600 hover:bg-primary-700 text-white py-3 rounded-lg font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
-            {loading && <LoadingSpinner className="w-5 h-5" />}
+            {loading && <Icon name={ICONS.LOADING} spin className="w-5 h-5" />}
             {loading ? 'Setting up...' : 'Continue to InstaVu'}
           </button>
         </form>

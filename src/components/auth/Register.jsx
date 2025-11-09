@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { InstaVuLogo, Email, Lock, Eye, EyeOff, LoadingSpinner } from '../../assets/icons';
+import Icon, { ICONS } from '../../components/common/Icon';
 import { validateEmail, validatePassword } from '../../utils/validators';
 
 export default function Register() {
@@ -75,12 +75,12 @@ export default function Register() {
   };
 
   const getStrengthColor = () => {
-    if (!formData.password) return '';
+    if (!formData.password) return 'bg-gray-200';
     switch (passwordStrength) {
-      case 'weak': return 'bg-red-500';
-      case 'medium': return 'bg-yellow-500';
-      case 'strong': return 'bg-green-500';
-      default: return 'bg-gray-300';
+      case 'weak': return 'bg-error-500';
+      case 'medium': return 'bg-warning-500';
+      case 'strong': return 'bg-success-500';
+      default: return 'bg-gray-200';
     }
   };
 
@@ -95,37 +95,42 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-700 to-gold-600 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 animate-scale-in">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+      <div className="bg-white rounded-2xl shadow-lg border border-gray-200 w-full max-w-md p-6 sm:p-8 animate-scale-in">
         {/* Logo */}
-        <div className="text-center mb-8">
-          <InstaVuLogo className="w-16 h-16 mx-auto mb-4 text-blue-600" />
-          <h1 className="text-3xl font-bold gradient-text">Create Account</h1>
-          <p className="text-gray-600 mt-2">Join InstaVu for unlimited storage</p>
+        <div className="text-center mb-6">
+          <div className="inline-block p-3 bg-primary-500 rounded-xl mb-4">
+            <Icon name={ICONS.ALL_FILES} className="w-8 h-8 text-white" />
+          </div>
+          <h1 className="text-3xl font-bold text-gray-900">Create Account</h1>
+          <p className="text-gray-600 mt-2 text-sm">Join InstaVu for unlimited storage</p>
         </div>
 
         {/* Error Message */}
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-4 text-sm">
-            {error}
+          <div className="bg-error-50 border border-error-200 text-error-700 px-4 py-3 rounded-lg mb-4 text-sm">
+            <div className="flex items-start gap-2">
+              <Icon name={ICONS.ERROR} className="w-5 h-5 flex-shrink-0 mt-0.5" />
+              <span>{error}</span>
+            </div>
           </div>
         )}
 
         {/* Register Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Email */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+          <div className="space-y-2">
+            <label className="block text-sm font-medium text-gray-700">
               Email
             </label>
             <div className="relative">
-              <Email className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <Icon name={ICONS.EMAIL} className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                className="w-full pl-10 pr-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition text-sm"
                 placeholder="your@email.com"
                 required
                 disabled={loading}
@@ -134,18 +139,18 @@ export default function Register() {
           </div>
 
           {/* Password */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+          <div className="space-y-2">
+            <label className="block text-sm font-medium text-gray-700">
               Password
             </label>
             <div className="relative">
-              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <Icon name={ICONS.LOCK} className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
               <input
                 type={showPassword ? 'text' : 'password'}
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                className="w-full pl-10 pr-12 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition text-sm"
                 placeholder="••••••••"
                 required
                 disabled={loading}
@@ -155,7 +160,7 @@ export default function Register() {
                 onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition"
               >
-                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                <Icon name={showPassword ? ICONS.EYE_OFF : ICONS.EYE} className="w-5 h-5" />
               </button>
             </div>
 
@@ -165,9 +170,9 @@ export default function Register() {
                 <div className="flex justify-between text-xs mb-1">
                   <span className="text-gray-600">Password strength:</span>
                   <span className={`font-medium capitalize ${
-                    passwordStrength === 'weak' ? 'text-red-600' :
-                    passwordStrength === 'medium' ? 'text-yellow-600' :
-                    'text-green-600'
+                    passwordStrength === 'weak' ? 'text-error-600' :
+                    passwordStrength === 'medium' ? 'text-warning-600' :
+                    'text-success-600'
                   }`}>
                     {passwordStrength}
                   </span>
@@ -183,18 +188,18 @@ export default function Register() {
           </div>
 
           {/* Confirm Password */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+          <div className="space-y-2">
+            <label className="block text-sm font-medium text-gray-700">
               Confirm Password
             </label>
             <div className="relative">
-              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <Icon name={ICONS.LOCK} className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
               <input
                 type={showConfirmPassword ? 'text' : 'password'}
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                className="w-full pl-10 pr-12 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition text-sm"
                 placeholder="••••••••"
                 required
                 disabled={loading}
@@ -204,7 +209,7 @@ export default function Register() {
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition"
               >
-                {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                <Icon name={showConfirmPassword ? ICONS.EYE_OFF : ICONS.EYE} className="w-5 h-5" />
               </button>
             </div>
           </div>
@@ -213,17 +218,17 @@ export default function Register() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-gradient-to-r from-blue-600 to-gold-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-gold-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            className="w-full bg-primary-600 hover:bg-primary-700 text-white py-3 rounded-lg font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
-            {loading && <LoadingSpinner className="w-5 h-5" />}
-            {loading ? 'Creating account...' : 'Create Account'}
+            {loading && <Icon name={ICONS.LOADING} spin className="w-5 h-5" />}
+            <span>{loading ? 'Creating account...' : 'Create Account'}</span>
           </button>
         </form>
 
         {/* Login Link */}
         <p className="text-center text-sm text-gray-600 mt-6">
           Already have an account?{' '}
-          <Link to="/login" className="text-blue-600 font-semibold hover:underline">
+          <Link to="/login" className="text-primary-600 font-semibold hover:text-primary-700 transition">
             Sign in
           </Link>
         </p>
