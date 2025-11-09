@@ -1,18 +1,20 @@
-// Brand Logo
+// This file provides backward compatibility during the icon migration
+// It exports both the new Icon system and the old SVG components
+// Gradually migrate components to use the new Icon component
+
+// New Icon System (Recommended)
+export { default as Icon, ICONS } from '../../components/common/Icon';
+
+// Old SVG Components (Deprecated - Remove after migration)
+import React from 'react';
+
+// Brand Logo (Keep as SVG since it's custom)
 export const InstaVuLogo = ({ className = "w-8 h-8" }) => (
   <svg className={className} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#8b5cf6" />
-        <stop offset="100%" stopColor="#06b6d4" />
-      </linearGradient>
-    </defs>
-    {/* Camera lens */}
-    <circle cx="24" cy="24" r="12" stroke="url(#logoGradient)" strokeWidth="3" fill="none" />
-    <circle cx="24" cy="24" r="6" fill="url(#logoGradient)" />
-    {/* Cloud */}
+    <circle cx="24" cy="24" r="12" stroke="currentColor" strokeWidth="3" fill="none" />
+    <circle cx="24" cy="24" r="6" fill="currentColor" />
     <path d="M32 18c2.5 0 4.5 2 4.5 4.5 0 1.5-.7 2.8-1.8 3.6.2.6.3 1.2.3 1.9 0 3.3-2.7 6-6 6H18c-3.3 0-6-2.7-6-6 0-.7.1-1.3.3-1.9-1.1-.8-1.8-2.1-1.8-3.6 0-2.5 2-4.5 4.5-4.5.5 0 .9.1 1.3.2C17.7 15.5 20.7 14 24 14s6.3 1.5 7.7 3.8c.4-.1.8-.2 1.3-.2z" 
-          fill="url(#logoGradient)" opacity="0.3"/>
+          fill="currentColor" opacity="0.3"/>
   </svg>
 );
 
@@ -23,7 +25,7 @@ export const InstaVuIcon = ({ className = "w-6 h-6" }) => (
   </svg>
 );
 
-// Navigation Icons
+// Navigation Icons (Deprecated - Use Icon component instead)
 export const Upload = ({ className = "w-6 h-6" }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M12 4L12 16M12 4L8 8M12 4L16 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -78,7 +80,7 @@ export const List = ({ className = "w-6 h-6" }) => (
   </svg>
 );
 
-// File Type Icons
+// File Type Icons (Deprecated - Use Icon component instead)
 export const PhotoIcon = ({ className = "w-6 h-6" }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="2"/>
@@ -114,7 +116,7 @@ export const AllFilesIcon = ({ className = "w-6 h-6" }) => (
   </svg>
 );
 
-// Media Controls
+// Media Controls (Deprecated - Use Icon component instead)
 export const Play = ({ className = "w-6 h-6" }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M8 5v14l11-7L8 5z" fill="currentColor"/>
@@ -182,7 +184,7 @@ export const Settings = ({ className = "w-6 h-6" }) => (
   </svg>
 );
 
-// Status Icons
+// Status Icons (Deprecated - Use Icon component instead)
 export const CheckCircle = ({ className = "w-6 h-6" }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
@@ -228,7 +230,7 @@ export const Disconnected = ({ className = "w-6 h-6" }) => (
   </svg>
 );
 
-// Action Icons
+// Action Icons (Deprecated - Use Icon component instead)
 export const Heart = ({ className = "w-6 h-6" }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -277,7 +279,7 @@ export const Link = ({ className = "w-6 h-6" }) => (
   </svg>
 );
 
-// User & Auth Icons
+// User & Auth Icons (Deprecated - Use Icon component instead)
 export const User = ({ className = "w-6 h-6" }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <circle cx="12" cy="8" r="4" stroke="currentColor" strokeWidth="2"/>
@@ -385,3 +387,29 @@ export const Power = ({ className = "w-6 h-6" }) => (
     <path d="M18.36 6.64a9 9 0 11-12.73 0M12 2v10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
+
+// Migration warning component
+export const MigrationWarning = () => {
+  if (process.env.NODE_ENV === 'development') {
+    console.warn(
+      '🚨 DEPRECATION WARNING: Using deprecated SVG icons from assets/icons. ' +
+      'Migrate to the new Icon component: import Icon, { ICONS } from "../../components/common/Icon"'
+    );
+  }
+  return null;
+};
+
+// Auto-warn on import in development
+if (process.env.NODE_ENV === 'development') {
+  console.warn(
+    '🚨 DEPRECATION WARNING: src/assets/icons/index.jsx is deprecated. ' +
+    'Please migrate to the new Icon component system. ' +
+    'See MIGRATION_GUIDE.md for details.'
+  );
+}
+
+export default {
+  Icon,
+  ICONS,
+  MigrationWarning
+};
