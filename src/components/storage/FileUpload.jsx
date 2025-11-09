@@ -1,13 +1,7 @@
 import { useState, useRef } from 'react';
 import { useStorage } from '../../context/StorageContext';
 import { useApiKeys } from '../../context/ApiContext';
-import {
-  Close,
-  Upload,
-  CheckCircle,
-  ErrorCircle,
-  LoadingSpinner,
-} from '../../assets/icons';
+import Icon, { ICONS } from '../../components/common/Icon';
 import { formatFileSize, validateFile } from '../../utils/fileHelpers';
 import { useToast } from '../common/Toast';
 
@@ -119,11 +113,11 @@ export default function FileUpload({ onClose }) {
   const getStatusIcon = (status) => {
     switch (status) {
       case 'complete':
-        return <CheckCircle className="w-5 h-5 text-green-500" />;
+        return <Icon name={ICONS.CHECK} className="w-5 h-5 text-green-500" />;
       case 'error':
-        return <ErrorCircle className="w-5 h-5 text-red-500" />;
+        return <Icon name={ICONS.ERROR} className="w-5 h-5 text-red-500" />;
       case 'uploading':
-        return <LoadingSpinner className="w-5 h-5 text-primary-600" />;
+        return <Icon name={ICONS.LOADING} className="w-5 h-5 text-primary-600" spin />;
       default:
         return null;
     }
@@ -141,7 +135,7 @@ export default function FileUpload({ onClose }) {
               onClick={onClose}
               className="p-2 hover:bg-gray-100 rounded-lg transition"
             >
-              <Close className="w-6 h-6 text-gray-600" />
+              <Icon name={ICONS.CLOSE} className="w-6 h-6 text-gray-600" />
             </button>
           </div>
 
@@ -161,7 +155,7 @@ export default function FileUpload({ onClose }) {
                     : 'border-gray-300 hover:border-primary-400 hover:bg-gray-50'
                 }`}
               >
-                <Upload className="w-16 h-16 mx-auto mb-4 text-gray-400" />
+                <Icon name={ICONS.UPLOAD} className="w-16 h-16 mx-auto mb-4 text-gray-400" />
                 <h3 className="text-lg font-semibold text-gray-700 mb-2">
                   Drop files here or click to browse
                 </h3>
@@ -218,7 +212,7 @@ export default function FileUpload({ onClose }) {
                         onClick={() => removeFromQueue(item.id)}
                         className="p-2 hover:bg-gray-200 rounded-lg transition"
                       >
-                        <Close className="w-5 h-5 text-gray-600" />
+                        <Icon name={ICONS.CLOSE} className="w-5 h-5 text-gray-600" />
                       </button>
                     )}
                   </div>
@@ -270,7 +264,7 @@ export default function FileUpload({ onClose }) {
                   }
                   className="px-6 py-2 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-lg hover:from-primary-700 hover:to-primary-800 transition disabled:opacity-50 flex items-center gap-2"
                 >
-                  {uploading && <LoadingSpinner className="w-5 h-5" />}
+                  {uploading && <Icon name={ICONS.LOADING} className="w-5 h-5" spin />}
                   {uploading ? 'Uploading...' : 'Upload All'}
                 </button>
               </div>
