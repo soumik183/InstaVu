@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     // Check active session
@@ -17,10 +18,16 @@ export const AuthProvider = ({ children }) => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         console.log('Auth event:', event);
+        setError(null);
         setUser(session?.user ?? null);
         
         if (session?.user) {
-          await loadProfile(session.user.id);
+          try {
+            await loadProfile(session.user.id);
+          } catch (profileError) {
+            console.error('Error loading profile:', profileError);
+            setError('Failed to load user profile');
+          }
         } else {
           setProfile(null);
         }
@@ -33,6 +40,7 @@ export const AuthProvider = ({ children }) => {
 
   const checkUser = async () => {
     try {
+      setError(null);
       const { data: { session } } = await supabase.auth.getSession();
       setUser(session?.user ?? null);
       
@@ -41,17 +49,31 @@ export const AuthProvider = ({ children }) => {
       }
     } catch (error) {
       console.error('Error checking user:', error);
+      setError('Failed to verify authentication session');
+      setUser(null);
+      setProfile(null);
     } finally {
       setLoading(false);
     }
   };
 
   const loadProfile = async (userId) => {
-    const { data, error } = await authService.getUserProfile(userId);
-    if (!error && data) {
-      setProfile(data);
-      // Update last login
-      await authService.updateLastLogin(userId);
+    try {
+      const { data, error } = await authService.getUserProfile(userId);
+      if (error) {
+        throw new Error(error.message || 'Failed to load profile');
+      }
+      if (data) {
+        setProfile(data);
+        // Update last login
+        await authService.updateLastLogin(userId);
+      } else {
+        setProfile(null);
+      }
+    } catch (error) {
+      console.error('Error loading profile:', error);
+      setProfile(null);
+      // Don't throw here as the user is still authenticated
     }
   };
 
