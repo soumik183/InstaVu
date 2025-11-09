@@ -131,6 +131,7 @@ export default function Sidebar({ isOpen, onClose, onCategoryChange }) {
           transition-transform duration-300 ease-in-out
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}
           lg:translate-x-0
+          overflow-y-auto
         `}
       >
         <div className="flex flex-col h-full">
@@ -169,8 +170,13 @@ export default function Sidebar({ isOpen, onClose, onCategoryChange }) {
                 >
                   {/* Background Gradient */}
                   <div className={`
-                    absolute inset-0 bg-gradient-to-br ${isActive ? 'from-gold-500 to-blue-500' : category.gradient}
-                    ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-10'}
+                    absolute inset-0 ${isActive 
+                      ? 'bg-premium-gradient' 
+                      : isActive === false && category.gradient.includes('from-gold') 
+                        ? 'bg-gold-gradient'
+                        : 'bg-blue-gradient'
+                    }
+                    ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-15'}
                     transition-opacity duration-300
                   `}></div>
 
@@ -240,8 +246,8 @@ export default function Sidebar({ isOpen, onClose, onCategoryChange }) {
               `}
             >
               <div className={`
-                absolute inset-0 bg-gradient-to-br from-gold-500 to-blue-500
-                ${location.pathname === '/dashboard/favorites' ? 'opacity-100' : 'opacity-0 group-hover:opacity-10'}
+                absolute inset-0 bg-gold-gradient
+                ${location.pathname === '/dashboard/favorites' ? 'opacity-100' : 'opacity-0 group-hover:opacity-15'}
                 transition-opacity duration-300
               `}></div>
 
